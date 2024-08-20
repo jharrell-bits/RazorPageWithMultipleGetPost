@@ -83,7 +83,7 @@ namespace RazorPageWithMultipleGetPost.Pages
                 {
                     GadgetKey = "2",
                     GadgetType = "Type X",
-                    UsageInstructions = "Use Widgeths with Gadget Z."
+                    UsageInstructions = "Use Widgets with Gadget X."
                 },
                 new Gadget()
                 {

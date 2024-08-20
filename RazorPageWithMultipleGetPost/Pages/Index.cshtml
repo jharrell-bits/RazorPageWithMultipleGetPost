@@ -1,0 +1,65 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Gadgets";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Gadgets</h1>
+    <i>Razor Page with numerous get/post actions.</i>
+</div>
+
+<div>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">
+                    <div class="d-flex flex-row align-items-center">
+                        Key
+                        <form method="get" asp-page-handler="SortByKey">
+                            <button type="submit" class="btn btn-outline-light btn-sm ms-2">Sort</button>
+                        </form>
+                    </div>
+                </th>
+                <th scope="col">
+                    <div class="d-flex flex-row align-items-center">
+                        Type
+                        <form method="get" asp-page-handler="SortByType">
+                            <button type="submit" class="btn btn-outline-light btn-sm ms-2">Sort</button>
+                        </form>
+                    </div>
+                </th>
+                <th scope="col">
+                    <div class="d-flex flex-row align-items-center">
+                        Usage Instructions
+                        <form method="get" asp-page-handler="SortByUsageInstructions">
+                            <button type="submit" class="btn btn-outline-light btn-sm ms-2">Sort</button>
+                        </form>
+                    </div>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var gadget in Model.Gadgets)
+        {
+            <tr>
+                <td>@gadget.GadgetKey</td>
+                <td>@gadget.GadgetType</td>
+                <td>@gadget.UsageInstructions</td>
+                <td>
+                    <form method="post" asp-page-handler="Details">
+                        <input type="hidden" name="gadgetKey" value="@gadget.GadgetKey" />
+                        <button type="submit" class="btn btn-secondary">View</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Delete">
+                        <input type="hidden" name="gadgetKey" value="@gadget.GadgetKey" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
